@@ -9,58 +9,53 @@ my_contacts = []
 
 
 def add_contact(my_arr):  # works
-    new_contact = input("please enter name of new contact:")
+    new_contact = input("please enter name of new contact:\n")
     my_arr.append(new_contact)
-    print("the contact has been added")
+    print("the contact has been added\n")
     list_contact(my_arr)
 
 
-def edit_contact(my_arr):  # changes the last contact
+def edit_contact(my_arr):  # works
     list_contact(my_arr)
-    contact = input("Please enter name of contact you would like to edit")
+    contact = input("Please enter name of contact you would like to edit:\n")
     index_of_contact = search(my_arr, contact)
     while index_of_contact == -1:
-        contact = input("The name is not valid,Please enter another name")
+        contact = input("The name is not valid,Please enter another name:\n")
         list_contact(my_arr)
         index_of_contact = search(my_arr, contact)
     else:
-        new_contact = input("Please enter the new name")
+        new_contact = input("Please enter the new name:\n")
         my_arr[index_of_contact] = new_contact
-        print("the contact has been edited")
+        print("the contact has been edited ,the index is ", index_of_contact, "\n")
     list_contact(my_arr)
 
 
 def delete_contact(my_arr):  # works
     list_contact(my_arr)
-    contact = input("Please enter name of contact")
+    contact = input("Please enter name of contact\n")
     index_of_contact = search(my_arr, contact)
     while index_of_contact == -1:
-        contact = input("The name is not valid,Please enter another name")
+        contact = input("The name is not valid,Please enter another name\n")
         index_of_contact = search(my_arr, contact)
     my_arr.remove(contact)
-    print("the contact has been deleted")
+    print("the contact has been deleted\n")
     list_contact(my_arr)
 
 
 def list_contact(my_arr):  # works
     my_arr.sort()
-    print(my_arr)
+    # print(my_arr)
+    for index, item in enumerate(my_arr):
+        print(index, item)
 
 
-def search(my_arr, contact_name):  # returns last index of list
-    if_there = False
-    i = 0
-    for item in my_arr:
-        i += 1
+def search(my_arr, contact_name):  # works
+    index_of = -1
+    for index, item in enumerate(my_arr):
         if contact_name == item:
-            if_there = True
-            index_of = i
-    if if_there == True and i > 0:
-        return (index_of - 1)
-    elif if_there == True and index_of == 0:
-        return index_of
-    else:
-        return -1
+            index_of = index
+            print(index, item)
+    return index_of
 
 
 def menu():
@@ -70,7 +65,7 @@ def menu():
         print("3 - Delete Contact")
         print("4 - List of all contacts")
         print("5 - Exit")
-        selection = input("please enter command:")
+        selection = input("please enter command:\n")
         if selection == "1":
             add_contact(my_contacts)
         if selection == "2":
