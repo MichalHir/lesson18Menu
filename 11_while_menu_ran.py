@@ -1,5 +1,5 @@
 my_contacts = []
-my_contacts_fav = []
+# my_contacts_fav = [] # used for testing
 
 
 #  לסיים את ספר הטלפונים כולל חיפוש
@@ -9,14 +9,13 @@ my_contacts_fav = []
 # הוסף רשימה של מועדפים וכולי
 
 
-def add_contact(my_arr, new_contact):  # works
-    # new_contact = input("please enter name of new contact:\n")
+def add_contact(my_arr, new_contact):  # adds contacts
     my_arr.append(new_contact)
     print("the contact has been added\n")
     list_contact(my_arr)
 
 
-def edit_contact(my_arr):  # works
+def edit_contact(my_arr):  # edits contacts
     list_contact(my_arr)
     contact = input("Please enter name of contact you would like to edit:\n")
     index_of_contact = simple_search(my_arr, contact)
@@ -36,7 +35,7 @@ def edit_contact(my_arr):  # works
     list_contact(my_arr)
 
 
-def delete_contact(my_arr):  # works
+def delete_contact(my_arr):  # deletes contacts
     list_contact(my_arr)
     contact = input("Please enter name of contact\n")
     index_of_contact = simple_search(my_arr, contact)
@@ -53,7 +52,7 @@ def delete_contact(my_arr):  # works
     list_contact(my_arr)
 
 
-def list_contact(my_arr):  # works
+def list_contact(my_arr):  # prints contacts
     if my_arr == []:
         print("there no contacts to display")
     my_arr.sort()
@@ -61,16 +60,16 @@ def list_contact(my_arr):  # works
         print(index, item)
 
 
-def simple_search(my_arr, contact_name):  # works
+def simple_search(my_arr, contact_name):  # searches for full contact name
     index_of = -1
     for index, item in enumerate(my_arr):
         if contact_name.lower() == item.lower():
             index_of = index
-            # print(index, item)
+            # print(index, item) - used for testing
     return index_of
 
 
-def search_part_word(my_arr):
+def search_part_word(my_arr): # search for contacts that contain the expression
     # casefold()	Converts string into lower case
     # lower()	Converts a string into lower case
     # find()	Searches the string for a specified value and returns the position of where it was found
@@ -86,10 +85,9 @@ def search_part_word(my_arr):
         print("no search results\n")
 
 
-# def add_fav(my_arr,my_arr_fav,contact_index):
 
-
-def add_contact_fav(my_arr, my_arr_fav):
+# def add_contact_fav(my_arr, my_arr_fav): # adds contact to favorites (adds * before the name)
+def add_contact_fav(my_arr):
     list_contact(my_arr)
     contact = input("Please enter name of contact\n")
     index_of_contact = simple_search(my_arr, contact)
@@ -101,15 +99,13 @@ def add_contact_fav(my_arr, my_arr_fav):
             menu()
             break
         index_of_contact = simple_search(my_arr, contact)
-    add_contact(my_arr_fav, contact)
+    # add_contact(my_arr_fav, contact) - used for testing
     my_arr[index_of_contact] = "*" + my_arr[index_of_contact]
     print("the contact has been added to favorites\n")
     list_contact(my_arr)
 
 
-def list_contact_fav(my_arr):
-    # if my_arr == []:
-    #     print("there no contacts to display")
+def list_contact_fav(my_arr): # prints favorites
     my_arr.sort()
     if_fav = False
     count = 0
@@ -123,7 +119,7 @@ def list_contact_fav(my_arr):
         print("there are no favorites")
 
 
-def menu():
+def menu(): # menu
     while True:
         print("1 - Add Contact")
         print("2 - Edit Contact")
@@ -144,15 +140,13 @@ def menu():
         if selection == "4":
             list_contact(my_contacts)
         if selection == "5":
-            # contact = input("Please enter name of contact\n")
             search_part_word(my_contacts)
         if selection == "6":
-            # contact = input("Please enter name of contact\n")
-            add_contact_fav(my_contacts, my_contacts_fav)
+            # add_contact_fav(my_contacts, my_contacts_fav) - used for testing
+            add_contact_fav(my_contacts)
         if selection == "7":
-            # list_contact(my_contacts_fav)
+            # list_contact(my_contacts_fav) - used for testing
             list_contact_fav(my_contacts)
-
         if selection == "8":
             print("Goodbye")
             break
