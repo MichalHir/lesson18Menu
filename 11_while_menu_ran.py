@@ -69,7 +69,7 @@ def simple_search(my_arr, contact_name):  # searches for full contact name
     return index_of
 
 
-def search_part_word(my_arr): # search for contacts that contain the expression
+def search_part_word(my_arr):  # search for contacts that contain the expression
     # casefold()	Converts string into lower case
     # lower()	Converts a string into lower case
     # find()	Searches the string for a specified value and returns the position of where it was found
@@ -83,7 +83,6 @@ def search_part_word(my_arr): # search for contacts that contain the expression
             print(index, item)
     if if_contains == False:
         print("no search results\n")
-
 
 
 # def add_contact_fav(my_arr, my_arr_fav): # adds contact to favorites (adds * before the name)
@@ -105,7 +104,7 @@ def add_contact_fav(my_arr):
     list_contact(my_arr)
 
 
-def list_contact_fav(my_arr): # prints favorites
+def list_contact_fav(my_arr):  # prints favorites
     my_arr.sort()
     if_fav = False
     count = 0
@@ -119,7 +118,7 @@ def list_contact_fav(my_arr): # prints favorites
         print("there are no favorites")
 
 
-def menu(): # menu
+def menu():  # menu
     while True:
         print("1 - Add Contact")
         print("2 - Edit Contact")
