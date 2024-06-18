@@ -132,9 +132,7 @@ def list_contact_fav(my_arr):  # prints favorites
         print("there are no favorites")
 
 
-def search_part_word_fav(
-    my_arr,
-):  # search for favorite contacts that contain the expression
+def search_part_word_fav(my_arr,): # search for favorite contacts that contain the expression
     # casefold()	Converts string into lower case
     # lower()	Converts a string into lower case
     # find()	Searches the string for a specified value and returns the position of where it was found
