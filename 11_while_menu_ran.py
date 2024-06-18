@@ -8,9 +8,16 @@ my_contacts = []
 # מיין את המערך
 # הוסף רשימה של מועדפים וכולי
 
+import os
+
+
+def clear_terminal():
+    os.system("cls" if os.name == "nt" else "clear")
+
 
 def add_contact(my_arr, new_contact):  # adds contacts
     my_arr.append(new_contact)
+    clear_terminal()
     print("the contact has been added\n")
     list_contact(my_arr)
 
@@ -31,6 +38,7 @@ def edit_contact(my_arr):  # edits contacts
     else:
         new_contact = input("Please enter the new name:\n")
         my_arr[index_of_contact] = new_contact
+        clear_terminal()
         print("the contact has been edited ,the index is ", index_of_contact, "\n")
     list_contact(my_arr)
 
@@ -48,11 +56,13 @@ def delete_contact(my_arr):  # deletes contacts
             break
         index_of_contact = simple_search(my_arr, contact)
     my_arr.remove(contact)
+    clear_terminal()
     print("the contact has been deleted\n")
     list_contact(my_arr)
 
 
 def list_contact(my_arr):  # prints contacts
+    clear_terminal()
     if my_arr == []:
         print("there no contacts to display")
     my_arr.sort()
@@ -75,6 +85,7 @@ def search_part_word(my_arr):  # search for contacts that contain the expression
     # find()	Searches the string for a specified value and returns the position of where it was found
     index_of = -1
     if_contains = False
+    clear_terminal()
     contact = input("Please enter name of contact\n")
     for index, item in enumerate(my_arr):
         if (item.lower()).find(contact.lower()) >= 0:
@@ -96,15 +107,18 @@ def add_contact_fav(my_arr):
         )
         if contact == "7":
             menu()
+            clear_terminal()
             break
         index_of_contact = simple_search(my_arr, contact)
     # add_contact(my_arr_fav, contact) - used for testing
     my_arr[index_of_contact] = "*" + my_arr[index_of_contact]
+    clear_terminal()
     print("the contact has been added to favorites\n")
     list_contact(my_arr)
 
 
 def list_contact_fav(my_arr):  # prints favorites
+    clear_terminal()
     my_arr.sort()
     if_fav = False
     count = 0
@@ -118,6 +132,28 @@ def list_contact_fav(my_arr):  # prints favorites
         print("there are no favorites")
 
 
+def search_part_word_fav(
+    my_arr,
+):  # search for favorite contacts that contain the expression
+    # casefold()	Converts string into lower case
+    # lower()	Converts a string into lower case
+    # find()	Searches the string for a specified value and returns the position of where it was found
+    index_of = -1
+    if_contains = False
+    clear_terminal()
+    contact = input("Please enter name of contact\n")
+    if_fav = False
+    for index, item in enumerate(my_arr):
+        if_fav = item.startswith("*")
+        if (item.lower()).find(contact.lower()) >= 0 and if_fav == True:
+            if_fav = False
+            if_contains = True
+            index_of = index
+            print(index, item)
+    if if_contains == False:
+        print("no search results\n")
+
+
 def menu():  # menu
     while True:
         print("1 - Add Contact")
@@ -127,7 +163,9 @@ def menu():  # menu
         print("5 - Search")
         print("6 - Add to favorites")
         print("7 - List favorites")
-        print("8 - Exit")
+        print("8 - Search favorites")
+        print("9 - clear terminal")
+        print("10 - Exit")
         selection = input("please enter command:\n")
         if selection == "1":
             new_contact = input("please enter name of new contact:\n")
@@ -147,6 +185,11 @@ def menu():  # menu
             # list_contact(my_contacts_fav) - used for testing
             list_contact_fav(my_contacts)
         if selection == "8":
+            search_part_word_fav(my_contacts)
+        if selection == "9":
+            clear_terminal()
+            # print("the terminal has been cleared")
+        if selection == "10":
             print("Goodbye")
             break
 
